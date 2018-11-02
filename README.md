@@ -1,5 +1,4 @@
 # FACS_NGS
-# FACS-NGS
 
 This project focused on using FACS-NGS method to profile the response of thousands of biosensor mutants.
 
