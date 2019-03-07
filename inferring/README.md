@@ -1,9 +1,7 @@
-# synthetic sgRNA library based functional genomics for prokaryotes: NGS data processing package
+# FACS-seq method to profile sensor mutant library: NGS data processing package
 
 ## What is this?
-This python script collection is one of the two the software subpackages of CRISPRi functional genomics method for the prokaryotes, used for the NGS data processing and result visualization. The basic description of this program can be found at BioRxiv: https://doi.org/10.1101/129668. Please cite this paper or subsequent peer-reviewed publication if this program is useful to your work.
-
-This script collection is user-friendly for experimental microbiologists with no or limited programming skills. Generally, the user only need to download the script, edit a configure file to set several parameters needed for sgRNA design, and type in one command line in a Linux environment to initiate the process. The output includes the statistics at sgRNA, gene and operon level of each studied phenotype. Meanwhile, diverse visualization files are also presented.
+This python script collection is one of the two the software subpackages of FACS-seq, used for the NGS data processing and calculation of response of each sensor mutant. The paper describing this program is currently under review. Please cite this paper if this program is useful to your work.
 
 ## General description of the algorithm and experiment
 The synthetic sgRNA plasmid library designed by the sgRNA-design subpackage can be transformed into prokaryotic cells expressing dCas9 protein. The resulting cell library can be subjected to stressed and control condition to study the reponse of genes to phenotypes, and the plasmids after selection can be extracted and sequenced by NGS. About the detailed protocol of the method, see our paper. This program is used to convert NGS raw data to the gene-phenotype association profile. For the NGS raw data mapping step of this package, we referred to the algorithm and source code described by Li, W. et al. Genome Biol. 16, 281 (2015) with some modifications.
