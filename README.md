@@ -10,4 +10,6 @@ One is the simulation package, used simulation method to guide the experiment de
 
 Another is the data processing package, used to convert the raw NGS .fq data from FACS-NGS experiments, based on the customized configure file to sensor response profile.
 
-About the usage of each sub package, please check the readme.txt under relevant directory.
+About the usage of each sub package, please check the readme under relevant directory.
+
+For any request or question, please contact wtm0217@gmail.com
