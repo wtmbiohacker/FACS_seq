@@ -4,7 +4,7 @@
 This python script collection is one of the two the software subpackages of FACS-seq, used for the NGS data processing and calculation of response of each sensor mutant. The paper describing this program is currently under review. Please cite this paper if this program is useful to your work.
 
 ## General description of the algorithm and experiment
-The synthetic sgRNA plasmid library designed by the sgRNA-design subpackage can be transformed into prokaryotic cells expressing dCas9 protein. The resulting cell library can be subjected to stressed and control condition to study the reponse of genes to phenotypes, and the plasmids after selection can be extracted and sequenced by NGS. About the detailed protocol of the method, see our paper. This program is used to convert NGS raw data to the gene-phenotype association profile. For the NGS raw data mapping step of this package, we referred to the algorithm and source code described by Li, W. et al. Genome Biol. 16, 281 (2015) with some modifications.
+To understand the sequence-function relationship of regulatory genetic elements, we developed FACS-seq approach to profile the funcitonal consequences of thousands of mutants in parallel. Briefly, a synthetic mutant library consisted 
 
 ## How to use it?
 ### Step 1：Installation
