@@ -4,7 +4,7 @@
 This python script collection is one of the two the software subpackages of FACS-seq, used for the NGS data processing and calculation of response of each sensor mutant. The paper describing this program is currently under review. Please cite this paper if this program is useful to your work.
 
 ## General description of the algorithm and experiment
-To understand the sequence-function relationship of regulatory genetic elements, we developed FACS-seq approach to profile the funcitonal consequences of thousands of mutants in parallel. Briefly, a synthetic mutant library consisted 
+To understand the sequence-function relationship of regulatory genetic elements, we developed FACS-seq approach to profile the funcitonal consequences of thousands of mutants in parallel. Briefly, a synthetic library consisted of many mutants was prepared, whose response was perturbed by relevant mutations. Next, the library was treated with a variaty of ligand concentration and subjected to FACS. Here, the library was sorted into diffrent bins according to low to high response signals. The cells sorted into each bin were recovered, respectively and subjected to NGS analysis of the DNA payload carrying the mutations. The 
 
 ## How to use it?
 ### Step 1：Installation
