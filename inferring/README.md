@@ -41,20 +41,23 @@ This file specifies the experiment design of FACS-seq. In particular, it defines
 |P3|B0P3|B1P3|B2P3|
 |P4|B0P4|B1P4|B2P4|
 |P5|B0P5|B1P5|B2P5|
-|P2|B0P6|B1P6|B2P6|
+|P6|B0P6|B1P6|B2P6|
 |..|....|....|....|
 
-**Each row refers to a bin and each column refers to a condition.
+**The name of each NGS raw data should be the same as those defined in the configure file (see below)**
 
-#### File 3: sgRNA position file (see example_coding_region_position.txt)
-Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line using tab as delimiter**.
-The file contains three columns in order of gene name, sgRNAid and the relative position of sgRNA in the gene. The name of sgRNAid and gene should be compatible with the sgRNA library file (File 2). Actually, you can also find this file as output of our library design subpackage.
+#### File 4: cell count file (see example_cell_count_configure.txt)
+This file specifies the number of cells sorted into each bin during FACS-seq. Similar to experiment design file (file 3), a N-M matrix is expected here, corresponding to N bins and M conditions. **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
 
-rsmE|rsmE_9|0.012
-----|------|-----
-rsmE|rsmE_10|0.014
-0|NC1|0
-...|...|...
+|Bin|Ligand=0uM|Ligand=100uM|Ligand=500uM|
+|---|----------|------------|------------|
+|P1|10587|50564|50575|
+|P2|100000|100000|100000|
+|P3|100000|100000|100000|
+|P4|100000|100000|100000|
+|P5|100000|100000|100000|
+|P6|100000|100000|100000|
+|..|....|....|....|
 
 #### File 4: operon file (see example_operon.txt) (optional)
 During the design of this package, we reorganize the gene level statistics at the operon level as an option. If you are not interested in this step or if your microorganism does not have a available operon file, please ignore this. 
