@@ -63,7 +63,7 @@ This file specifies the number of cells sorted into each bin during FACS-seq. Si
 |P4|100000|100000|100000|
 |P5|100000|100000|100000|
 |P6|51472|50923|51607|
-|..|....|....|....|
+|..|.....|.....|.....|
 
 
 #### File 5: bin boundary file (see example_bin_boundary_configure.txt)
@@ -77,23 +77,29 @@ This file specifies the boundary of bins used in FACS. Similar to experiment des
 |P4|-0.460,-0.076|-0.460,-0.076|-0.460,-0.076|
 |P5|-0.861,-0.460|-0.861,-0.460|-0.861,-0.460|
 |P6|-10.000,-0.861|-10.000,-0.861|-10.000,-0.861|
-|..|....|....|....|
+|..|..............|..............|..............|
 
 **In each cell, comma is used to seperate the upper and lower boundary of the relevant bin. Usually, fluorescence signal is used in FACS to define bins; hence, a log10(FLU) is expected here.**
 
 Note that in the example file, we used log10(GFP/mCherry) to define bins, which is the reason for negative bin boundary value. here, GFP is the reporter under control of the studied regulatory element, while mCherry is constitutively expressed used to normalize cell-to-cell variability.
 
 
-#### File 6: naming file (see example_naming_configure.txt)
-To name output files related to different studied phenotypes, we design this naming file to give each phenotype a name.
-**This file has no header line and uses tab as delimiter.***
-The file has two columns, while the first is pointer to File 5 (the experiment design file) and the second defines the name for each phenotype. Hence, the items in the first column should be like 'stressX', thus compatible with File 5.
+#### File 6: bin occupation file (see example_bin_occupation_configure.txt)
+This file specifies the proportion of cells sorted into each bin in the mixed library. Similar to experiment design file (file 3), a N-M matrix is expected here, corresponding to N bins and M conditions. **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
 
-stress1|essential
--------|---------
-stress2|whatever you like
-stress3|whatever you like
-...|...
+|Bin|Ligand=0uM|Ligand=100uM|Ligand=500uM|
+|---|----------|------------|------------|
+|P1|0.01649|0.04676|0.05377|
+|P2|0.20371|0.35796|0.39821|
+|P3|0.28313|0.19516|0.17723|
+|P4|0.23385|0.18492|0.16726|
+|P5|0.18695|0.14078|0.12048|
+|P6|0.07587|0.07443|0.08305|
+|..|.......|.......|.......|
+
+**Note that parameters here are different from those in file 4!!!** One additional experiment (analysis cytometry using mutant library) is needed to obtain the parameters here. Hence, the sum of each column here should be exactly 1. 
+
+
 
 ### Step 3: Set up the configure file (see example_configure.txt)
 The configure file is used to set all the necessary parameters and tell the program where to find necessary files. 
