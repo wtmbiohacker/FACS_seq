@@ -23,13 +23,28 @@ Please check the example files post at GitHub, which are described as below.
 Note: Please try to keep the name of each file meaningful but as simple as possible. The files can also be compressed as .gz format.
 
 #### File 2: mutant library file (see example_library.csv)
-The mutant library file specifies the synthetic mutant libary used in FACS-seq experiment. It is at .csv formate **without header line**, in which there are two columns in order of id and sequence, respectively. **Use tab as delimiter**. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-001', 'super_001' or 'super 001'**.
+The mutant library file specifies the synthetic mutant libary used in FACS-seq experiment. This file is used to map the NGS read to each mutant for counting. It is at .csv formate **without header line**, in which there are two columns in order of id and sequence, respectively. **Use tab as delimiter**. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-001', 'super_001' or 'super 001'**.
 
 |1st column (id)|2nd column(nucleotide sequence)|
-|--|--------|
+|---------------|-------------------------------|
 |mutant1|ATCCCCCCCCCCGGGGG|
 |mutant2|TGTGTGTGTGTGTGTGTGTG|
-|...|...|
+|.......|....................|
+
+#### File 3: experiment design file (see example_experiment_configure.txt)
+This file specifies the experiment design of FACS-seq. In particular, it defines the relation between each NGS raw data and its role in FACS-seq experiment. Usually, to profile the response of a genetic regulatory element of interest, we performed FACS-seq under M different conditions (M ligand concentrations). In each condition, the library is subjected to FACS and sorted into N bins. Hence, in the experiment design file, a N(row)-M(column) matrix is presented to define the role of each NGS raw data (one bin under one condition). **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
+
+|Bin|Ligand=0uM|Ligand=100uM|Ligand=500uM|
+|---|----------|------------|------------|
+|P1|B0P1|B1P1|B2P1|
+|P2|B0P2|B1P2|B2P2|
+|P3|B0P3|B1P3|B2P3|
+|P4|B0P4|B1P4|B2P4|
+|P5|B0P5|B1P5|B2P5|
+|P2|B0P6|B1P6|B2P6|
+|..|....|....|....|
+
+**Each row refers to a bin and each column refers to a condition.
 
 #### File 3: sgRNA position file (see example_coding_region_position.txt)
 Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line using tab as delimiter**.
@@ -50,26 +65,6 @@ operonid|operon	genes
 KO04087|dapE,ypfN
 KO04089|bcp
 ...|...
-
-#### File 5: experiment design file (see example_experiment_configure.txt)
-For each phenotype to be studied, we need one selective and one control condition, respectively. This file is used to define the role of each NGS raw data. **This file has one header line and uses tab as delimiter. The header line should be organized in a format as below:**
-
-Library/Condition|initial|stress1|control1|...|stressX|controlX|...
------------------|-------|-------|--------|---|-------|--------|---
-
-**Each stress and control pair defines a phenotype to be studied.**
-
-**Each row refers to a NGS library and each column refers to a condition. '1' indicates the association between library and condition, whereas the program will skip the item set as ‘0’.** All libraries under one common condition (in one column) are regarded as biological replicates and read count for each sgRNA of these libraries are averaged as geometric mean. One library can be associated with multiple conditions. **At least and only one library should be assigned as initial condition.** Initial library will be used to exclude sgRNAs with poor representation from further analysis based on customized threshold (
-
-below in configure file). Usually, use the library before selection as the initial library.
-
-Library/Condition|initial|stress1|control1
------------------|-------|-------|--------
-dCas9R1|0|1|0
-dCas9R2|0|1|0
-NCR1|0|0|1
-NCR2|0|0|1
-plasmid|1|0|0
 
 #### File 6: naming file (see example_naming_configure.txt)
 To name output files related to different studied phenotypes, we design this naming file to give each phenotype a name.
