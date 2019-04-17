@@ -25,10 +25,11 @@ Note: Please try to keep the name of each file meaningful but as simple as possi
 #### File 2: mutant library file (see example_library.csv)
 The mutant library file specifies the synthetic mutant libary used in FACS-seq experiment. It is at .csv formate **without header line**, in which there are two columns in order of id and sequence, respectively. **Use tab as delimiter**. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-001', 'super_001' or 'super 001'**.
 
---|--------
-mutant1|ATCCCCCCCCCCGGGGG
-mutant2|TGTGTGTGTGTGTGTGTGTG
-...|...
+|1st column (id)|2nd column(nucleotide sequence)|
+|--|--------|
+|mutant1|ATCCCCCCCCCCGGGGG|
+|mutant2|TGTGTGTGTGTGTGTGTGTG|
+|...|...|
 
 #### File 3: sgRNA position file (see example_coding_region_position.txt)
 Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line using tab as delimiter**.
