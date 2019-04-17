@@ -15,12 +15,16 @@ To understand the sequence-function relationship of regulatory genetic elements,
 4. Install Numpy version 1.13.1 or above
 5. Install Pandas version 0.18.1 or above
 
+
+
 ### Step 2：Prepare the necessary files.
 All these files (or subdirectories) should be organized under a common working directory together with the all .py scripts.
 Please check the example files post at GitHub, which are described as below.
 
+
 #### File 1: NGS files (.fastq or .fq extension) under one directory (see example_data/)
 Note: Please try to keep the name of each file meaningful but as simple as possible. The files can also be compressed as .gz format.
+
 
 #### File 2: mutant library file (see example_library.csv)
 The mutant library file specifies the synthetic mutant libary used in FACS-seq experiment. This file is used to map the NGS read to each mutant for counting. It is at .csv formate **without header line**, in which there are two columns in order of id and sequence, respectively. **Use tab as delimiter**. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-001', 'super_001' or 'super 001'**.
@@ -30,6 +34,7 @@ The mutant library file specifies the synthetic mutant libary used in FACS-seq e
 |mutant1|ATCCCCCCCCCCGGGGG|
 |mutant2|TGTGTGTGTGTGTGTGTGTG|
 |.......|....................|
+
 
 #### File 3: experiment design file (see example_experiment_configure.txt)
 This file specifies the experiment design of FACS-seq. In particular, it defines the relation between each NGS raw data and its role in FACS-seq experiment. Usually, to profile the response of a genetic regulatory element of interest, we performed FACS-seq under M different conditions (M ligand concentrations). In each condition, the library is subjected to FACS and sorted into N bins. Hence, in the experiment design file, a N(row)-M(column) matrix is presented to define the role of each NGS raw data (one bin under one condition). **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
@@ -46,6 +51,7 @@ This file specifies the experiment design of FACS-seq. In particular, it defines
 
 **The name of each NGS raw data should be the same as those defined in the configure file (see below)**
 
+
 #### File 4: cell count file (see example_cell_count_configure.txt)
 This file specifies the number of cells sorted into each bin during FACS-seq. Similar to experiment design file (file 3), a N-M matrix is expected here, corresponding to N bins and M conditions. **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
 
@@ -56,18 +62,27 @@ This file specifies the number of cells sorted into each bin during FACS-seq. Si
 |P3|100000|100000|100000|
 |P4|100000|100000|100000|
 |P5|100000|100000|100000|
-|P6|100000|100000|100000|
+|P6|51472|50923|51607|
 |..|....|....|....|
 
-#### File 4: operon file (see example_operon.txt) (optional)
-During the design of this package, we reorganize the gene level statistics at the operon level as an option. If you are not interested in this step or if your microorganism does not have a available operon file, please ignore this. 
-**The file has a header line and uses tab as delimiter.** It is consisted of two columns: operon id and the genes in the operon. **Genes in one polycistronic operon are separated by comma**. If one gene is located at multiple operons, it is ok to just list all of them. We recommend to organize genes in one polycistronic operon according to the order from upstream to downstream. Gene names should be consistent with sgRNA library file (File 2) and sgRNA position file (File 3).
 
-operonid|operon	genes
-|-------|------------
-KO04087|dapE,ypfN
-KO04089|bcp
-...|...
+#### File 5: bin boundary file (see example_bin_boundary_configure.txt)
+This file specifies the boundary of bins used in FACS. Similar to experiment design file (file 3), a N-M matrix is expected here, corresponding to N bins and M conditions. **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
+
+|Bin|Ligand=0uM|Ligand=100uM|Ligand=500uM|
+|---|----------|------------|------------|
+|P1|0.722,10.000|0.722,10.000|0.722,10.000|
+|P2|0.316,0.722|0.316,0.722|0.316,0.722|
+|P3|-0.076,0.316|-0.076,0.316|-0.076,0.316|
+|P4|-0.460,-0.076|-0.460,-0.076|-0.460,-0.076|
+|P5|-0.861,-0.460|-0.861,-0.460|-0.861,-0.460|
+|P6|-10.000,-0.861|-10.000,-0.861|-10.000,-0.861|
+|..|....|....|....|
+
+**In each cell, comma is used to seperate the upper and lower boundary of the relevant bin**
+**Usually, fluorescence signal is used in FACS to define bins; hence, a log10(FLU) is expected here**
+**Note that in the example file, we used log10(GFP/mCherry) to define bins, which is the reason for negative bin boundary value. here, GFP is the reporter under control of the studied regulatory element, while mCherry is constitutively expressed used to normalize cell-to-cell variability.**
+
 
 #### File 6: naming file (see example_naming_configure.txt)
 To name output files related to different studied phenotypes, we design this naming file to give each phenotype a name.
