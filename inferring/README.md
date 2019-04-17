@@ -7,13 +7,13 @@ This python script collection is one of the two the software subpackages of FACS
 To understand the sequence-function relationship of regulatory genetic elements, we developed FACS-seq approach to profile the funcitonal consequences of thousands of mutants in parallel. Briefly, a synthetic library consisted of many mutants was prepared, whose response was perturbed by relevant mutations. Next, the library was treated with a variaty of ligand concentration and subjected to FACS. Here, the library was sorted into diffrent bins according to low to high response signals. The cells sorted into each bin were recovered, respectively and subjected to NGS analysis of the DNA payload carrying the mutations. This package is used in the final step to process the NGS data to infer the response of each mutant for each condition (ligand concentration). For details about the mathematical framework, see our paper. Basically, users only need to edit a configure file to pinpoint the corresponding bin of each NGS data, as well as some parameters used in bin setting during FACS experiment. The package can follow the instructions in the configure file to automatically process the NGS data, giving rise to the final output. [Here](./image/FACS-seq_schematics.png) is a schematic of FACS-seq experiment.
 
 
-
 ## How to use it?
-### Step 1：Installation
-1. Install Python version 2.7 or above
+### Step 1：Installation and dependency
+1. Install Python version 2.7
 2. Install Scipy version 0.19.1 or above
 3. Install Matplotlib version 2.0.2 or above
 4. Install Numpy version 1.13.1 or above
+5. Install Pandas version 0.18.1 or above
 
 ### Step 2：Prepare the necessary files.
 All these files (or subdirectories) should be organized under a common working directory together with the all .py scripts.
