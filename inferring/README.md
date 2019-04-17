@@ -79,9 +79,10 @@ This file specifies the boundary of bins used in FACS. Similar to experiment des
 |P6|-10.000,-0.861|-10.000,-0.861|-10.000,-0.861|
 |..|....|....|....|
 
-**In each cell, comma is used to seperate the upper and lower boundary of the relevant bin**
-**Usually, fluorescence signal is used in FACS to define bins; hence, a log10(FLU) is expected here**
-**Note that in the example file, we used log10(GFP/mCherry) to define bins, which is the reason for negative bin boundary value. here, GFP is the reporter under control of the studied regulatory element, while mCherry is constitutively expressed used to normalize cell-to-cell variability.**
+**In each cell, comma is used to seperate the upper and lower boundary of the relevant bin. **
+**Usually, fluorescence signal is used in FACS to define bins; hence, a log10(FLU) is expected here.**
+
+Note that in the example file, we used log10(GFP/mCherry) to define bins, which is the reason for negative bin boundary value. here, GFP is the reporter under control of the studied regulatory element, while mCherry is constitutively expressed used to normalize cell-to-cell variability.
 
 
 #### File 6: naming file (see example_naming_configure.txt)
