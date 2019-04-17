@@ -19,18 +19,16 @@ To understand the sequence-function relationship of regulatory genetic elements,
 All these files (or subdirectories) should be organized under a common working directory together with the all .py scripts.
 Please check the example files post at GitHub, which are described as below.
 
-#### File 1: NGS files (.fastq or .fq extension) under one directory (see example_data/all files)
+#### File 1: NGS files (.fastq or .fq extension) under one directory (see example_data/)
 Note: Please try to keep the name of each file meaningful but as simple as possible. The files can also be compressed as .gz format.
 
-#### File 2: sgRNA library file (see example_library.csv)
-The sgRNA library file is at .csv formate **containing one header line**, in which there are three columns in order of id, sequence and gene respectively. **Use comma as delimiter**.
-If negative control (NC) sgRNAs are within this synthetic library, name them NCx and assign '0' at 'gene' column of these sgRNAs. This file can be found as an output of our library design subpackage. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-sgRNA', 'super_sgRNA' or 'super sgRNA'**.
+#### File 2: mutant library file (see example_library.csv)
+The mutant library file specifies the synthetic mutant libary used in FACS-seq experiment. It is at .csv formate **without header line**, in which there are two columns in order of id and sequence, respectively. **Use tab as delimiter**. It should be noted that **-, _ and ' '(space) should be eliminated from any id name. Avoid id like 'super-001', 'super_001' or 'super 001'**.
 
-sgRNAID|sgRNAseq|gene
---|--------|----
-sgRNA1|ATCCCCCCCCCCGGGGG|recA
-NC1|TGTGTGTGTGTGTGTGTGTG|0
-...|...|...
+--|--------
+mutant1|ATCCCCCCCCCCGGGGG
+mutant2|TGTGTGTGTGTGTGTGTGTG
+...|...
 
 #### File 3: sgRNA position file (see example_coding_region_position.txt)
 Flat file of sgRNA position (relative location of sgRNA in the coding region) information in gene **without header line using tab as delimiter**.
