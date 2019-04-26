@@ -1,0 +1,44 @@
+# NGS .fq data directory
+fastq	example_data/	Lib1.fq.gz	B1P1.fq.gz	B1P2.fq.gz	B1P3.fq.gz	B1P4.fq.gz	B1P5.fq.gz	B1P6.fq.gz	B2P1.fq.gz	B2P2.fq.gz	B2P3.fq.gz	B2P4.fq.gz	B2P5.fq.gz	B2P6.fq.gz
+
+# Sample labels correpsonding to the fq files
+sample-label	Lib1	B1P1	B1P2	B1P3	B1P4	B1P5	B1P6	B2P1	B2P2	B2P3	B2P4	B2P5	B2P6
+
+# Sample label to indicat the initial library
+iniLib	Lib1
+
+# Prefix constant nucleotide sequence of the variable region, used to identify the variable region
+prefix_nucl	TAAGTGCATT
+
+# Suffix constant nucleotide sequence of the variable region, used to identify the variable region
+suffix_nucl	TTTGCCCTTC
+
+# Specify the length of the sgRNAs (without PAM sequence)
+variable_region_len	75
+
+# Path to library design file (csv format, columns: id, sequence, gene)
+list-seq	example_library.csv
+
+# Sample names in the design matrix must refer to the samples defined above
+experiment_configure	example_experiment_configure.txt
+
+# Cell number sorted into each bin at the sorting experiment
+cell_count_configure	example_cell_count_configure.txt
+
+# The occupation of each bin against the poulation of each sorting experiment, adopted from the cytometry data
+bin_occupation_configure	example_bin_occupation_configure.txt
+
+# The boundary of each bin of each sorting experiment, adopted from the cytometry data
+bin_boundary_configure	example_bin_boundary_configure.txt
+
+# ReadThreshold for library member in initial library
+ReadsThreshold	40
+
+# range of Log10u and sigma during optimization, format:lower,upper(Log10u)\tlower,upper(sigma)
+log10u_sigma_range	" -1.5,0.9,0.05,0.4"
+
+# number of points in the grid space of each dimension during optimization
+search	10
+
+#prefix for naming of all files
+prefix	myexample
