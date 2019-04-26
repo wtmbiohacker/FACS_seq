@@ -1,4 +1,4 @@
-# FACS-seq method to profile sensor mutant library: NGS data processing package
+# FACS-seq method to profile mutant library of regulatory element: NGS data processing package
 
 ## What is this?
 This python script collection is one of the two the software subpackages of FACS-seq, used for the NGS data processing and calculation of response of each sensor mutant. The paper describing this program is currently under review. Please cite this paper if this program is useful to your work.
@@ -135,13 +135,13 @@ The configure file is used to set all the necessary parameters and tell the prog
 
 **prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
 
-Below is **an example configure file with default parameters**.
+see **example_configure.txt**.
 
 parameter|value
 ---------|-----
 prefix|Ilovemicrobe
 fastqpath|example_data
-fastq|dCas9R1.fq.gz,dCas9R2.fq.gz,NCR1.fq.gz,NCR2.fq.gz,plasmid.fq.gz
+fastq|example_data|Lib1.fq.gz|B0P1|B0P2
 forward_prefixseq|GCAC
 forward_suffixseq|GTTT
 sample-label|dCas9R1,dCas9R2,NCR1,NCR2,plasmid
