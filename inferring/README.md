@@ -31,8 +31,8 @@ The mutant library file specifies the synthetic mutant libary used in FACS-seq e
 
 |1st column (id)|2nd column(nucleotide sequence)|
 |---------------|-------------------------------|
-|mutant1|ATCCCCCCCCCCGGGGG|
-|mutant2|TGTGTGTGTGTGTGTGTGTG|
+|mutant1|ATGAATATCTTACATATATGTGTGACCTCAAAATGGTTCAATATTGACAACAAAATTGTCGATCACCGCCCTTGA|
+|mutant2|ATGAAAATCTTACATATATGTGTGACCTCAAAATGGTTCAATATTGACAACAAAATTGTCGATCACCGCCCTTGA|
 |.......|....................|
 
 
@@ -107,15 +107,15 @@ The configure file is used to set all the necessary parameters and tell the prog
  
 **fastq**: data directory and all NGS raw data (.fastq or .fq extension). The first item of the content should be the data directory, while the following items refer to the raw NGS data under this directory.
 
-**sample-label**: the label of each NGS raw data, Multiple file names are separated by ',' (comma).
-
-**forward_prefixseq**: several (4-10) upstream nucleotides (promoter) flanking the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the the PCR product of NGS library.
-
-**forward_suffixseq**: several (4-10) downstream nucleotides (Cas9 binding motif) flanking the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the the PCR product of NGS library.
-
 **sample-label**: the label for each NGS raw data file. The order of the label should corresponds to the order of the file names specified by the 'fastq' parameter. For simplicity, it is fine to use raw data file name without extension as label. Note that the labels specified here should be the same as the library name defined in the experiment design file (File 5).
 
-**sgrna-len**: number of nucleotides of the variable region (protospacer, also the nucleotides between forward_prefixseq and forward_suffixseq) of the sgRNA. It is determined in the library design. Hence, the length specified here should be consistent with that of the sgRNA-library file (see above). default: 20.
+**iniLib**: the NGS data profiling the mutant library prior to cell sorting, used as a reference to eliminate those mutants that are underrepresented in the library.
+
+**prefix_nucl**: several (4-10) upstream nucleotides flanking the variable region, used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the the PCR product of NGS library.
+
+**suffix_nucl**: several (4-10) downstream nucleotides flanking the variable region, used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the the PCR product of NGS library.
+
+**variable_region_len**: number of nucleotides of the variable region on the construct, where the synthetic mutations are introduced. It is determined in the library design. Hence, the length specified here should be consistent with that of the mutant library file (File 2).
 
 **list-seq**: the name of the sgRNA library file (see above, Step 2, File 2).
 
