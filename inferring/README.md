@@ -81,11 +81,11 @@ This file specifies the boundary of bins used in FACS. Similar to experiment des
 
 **In each cell, comma is used to seperate the upper and lower boundary of the relevant bin. Usually, fluorescence signal is used in FACS to define bins; hence, a log10(FLU) is expected here.**
 
-Note that in the example file, we used log10(GFP/mCherry) to define bins, which is the reason for negative bin boundary value. here, GFP is the reporter under control of the studied regulatory element, while mCherry is constitutively expressed used to normalize cell-to-cell variability.
+Note that in the example file, we used log10(GFP/mCherry) to define bins, which is the reason here for negative bin boundary value. GFP is the reporter under control of the studied regulatory element, while mCherry is constitutively expressed used to normalize cell-to-cell variability. -10.000 and 10.000 are used as numerical lower and upper boundary of negative and positive infinite, respectively.
 
 
 #### File 6: bin occupation file (see example_bin_occupation_configure.txt)
-This file specifies the proportion of cells sorted into each bin in the mixed library. Similar to experiment design file (file 3), a N-M matrix is expected here, corresponding to N bins and M conditions. **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
+This file specifies the proportion of cells sorted into each bin in the whole mixed library. Similar to experiment design file (file 3), a N-M matrix is expected here, corresponding to N bins and M conditions. **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
 
 |Bin|Ligand=0uM|Ligand=100uM|Ligand=500uM|
 |---|----------|------------|------------|
