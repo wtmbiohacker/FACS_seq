@@ -8,6 +8,8 @@ To understand the sequence-function relationship of regulatory genetic elements,
 
 
 ## How to use it?
+MacOS or Linux is supported environment to run this tool; for Windows users, some system shell commands in the scripts ('os.system(...)') need to be revised.
+
 ### Step 1：Installation and dependency
 1. Install Python version 2.7
 2. Install Scipy version 0.19.1 or above
