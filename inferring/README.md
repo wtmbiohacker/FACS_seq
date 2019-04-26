@@ -137,41 +137,21 @@ The configure file is used to set all the necessary parameters and tell the prog
 
 see **example_configure.txt**.
 
-parameter|value
----------|-----
-prefix|Ilovemicrobe
-fastqpath|example_data
-fastq|example_data|Lib1.fq.gz|B0P1|B0P2
-forward_prefixseq|GCAC
-forward_suffixseq|GTTT
-sample-label|dCas9R1,dCas9R2,NCR1,NCR2,plasmid
-sgrna-len|20
-list-seq|example_library.csv
-experiment_configure|example_experiment_configure.txt
-name_configure|example_naming_configure.txt
-control_setting|NC
-FDR_threshold|0.05
-ReadsThreshold|20
-hit_gene_calling|position
-gene_sgRNA_position|example_coding_region_position.txt
-Operon_gene_List|example_operon.txt
-
-After Step 2 and 3, check your working directory. It should looks like below:
-[here](./image/files_prepared_before_data_processing.png)
 
 ### Step 4：Run the pipeline
-Open the command line window (for example, terminal in Macbook), cd to the working directory and run the analysis pipeline.
+Put all necessary files mentioned above, as well as the data directory under the working directory.
+Open the command line window, cd to the working directory and run the analysis pipeline.
 cd path_to_your_working_directory
-python CRISPRscreen_main.py configure.txt
+python CRISPRscreen_main.py example_configure.txt
 
 We also post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
-python CRISPRscreen_main.py example_configure.txt
+python HTsensor_main.py example_configure.txt
 
 Check [here](./image/successful_running.png) for the output during a successful running of the abovementioned test.
 
-The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using this tool.
+The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using it.
 
-For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is the mapping of the raw NGS data. For a typical Macbook, we expect a processing speed of 20 million reads per hour. For a genome-scale library with 50 k members (10 sgRNAs per gene assuming 5 k genes encoded by a genome), 100-fold coverage leads to 5 million reads per library, thus roughly 4 NGS libraries processed per hour.
+For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is the mapping of the raw NGS read. For a typical Macbook, we expect a processing speed of 20 million reads per hour.
 
 ## Output files
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex_results). We term this subdirectory 'result directory' thereafter.
