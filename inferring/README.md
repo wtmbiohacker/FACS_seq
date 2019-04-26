@@ -129,9 +129,9 @@ The configure file is used to set all the necessary parameters and tell the prog
 
 **ReadsThreshold**: threshold of read count used to eliminate mutants detected less than this threshold in the library prior to cell sorting. Default: 20.
 
-**log10u_sigma_range**: method to call hit gene associated with particular phenotype. **Two options: 'position' or 'all', 'position' method is more recommended.** For details, see our paper.
+**log10u_sigma_range**: range of log10u (average response, see our paper for details) and sigma, within which the search for optimal value is executed. **format: " log10u_lower_limit,log10u_upper_limit, sigma_lower_limit,sigma_upper_limit", e.g." -1.5,0.9,0.05,0.4"**. Note that a double quotes is expected and the first character should be blank. We suggest using experimental data to determine the limit for log10u and sigma search range.
 
-**search**: .
+**search**: density of 2D grid plane used to search for optimal log10u and sigma value. 
 
 **prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
 
