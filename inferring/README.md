@@ -81,11 +81,11 @@ This file specifies the boundary of bins used in FACS. Similar to experiment des
 
 **In each cell, comma is used to seperate the upper and lower boundary of the relevant bin. Usually, fluorescence signal is used in FACS to define bins; hence, a log10(FLU) is expected here.**
 
-Note that in the example file, we used log10(GFP/mCherry) to define bins, which is the reason here for negative bin boundary value. GFP is the reporter under control of the studied regulatory element, while mCherry is constitutively expressed used to normalize cell-to-cell variability. -10.000 and 10.000 are used as numerical lower and upper boundary of negative and positive infinite, respectively.
+Note that in the example file, we used log10(GFP/mCherry) to define bins, which is the reason here for negative bin boundary value. GFP is the reporter under control of the studied regulatory element, while mCherry is constitutively expressed used to normalize cell-to-cell variability. -10.000 and 10.000 are used as numerical lower and upper boundary of negative and positive infinite, respectively. Usually, the gating strategy is determined prior to the cell sorting, hence identical gating parameters for all conditions (sorting experiment) are expected. Even though, note that different gating parameters are also supported. 
 
 
 #### File 6: bin occupation file (see example_bin_occupation_configure.txt)
-This file specifies the proportion of cells sorted into each bin in the whole mixed library. Similar to experiment design file (file 3), a N-M matrix is expected here, corresponding to N bins and M conditions. **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
+This file specifies the proportion of cells sorted into each bin in the whole pooled library. Similar to experiment design file (file 3), a N-M matrix is expected here, corresponding to N bins and M conditions. **This file is at .csv format using tab as delimiter. It also contains header row and index column, as one example shown below (3 conditions, 6 bins).**
 
 |Bin|Ligand=0uM|Ligand=100uM|Ligand=500uM|
 |---|----------|------------|------------|
@@ -103,13 +103,11 @@ This file specifies the proportion of cells sorted into each bin in the whole mi
 
 ### Step 3: Set up the configure file (see example_configure.txt)
 The configure file is used to set all the necessary parameters and tell the program where to find necessary files. 
-**This file is in a two-column format using tab as delimiter.** Each line starts with one word (name of one parameter) separated with the following (setting of this parameter) by a tab delimiter. We describe each parameter as below.
+**This file is in a two-column format using tab as delimiter.** Each line starts with one word (name of one parameter) separated with the following (content of this parameter) by a tab delimiter. We describe each parameter as below.
  
-**prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
+**fastq**: data directory and all NGS raw data (.fastq or .fq extension). The first item of the content should be the data directory, while the following items refer to the raw NGS data under this directory.
 
-**fastqpath**: directory under which all NGS raw data (.fastq or .fq extension) files are located. See File 1 above.
-
-**fastq**: the names of NGS raw data (.fastq or .fq extension) files to be processed under 'fastqpath'. Multiple file names are separated by ',' (comma).
+**sample-label**: the label of each NGS raw data, Multiple file names are separated by ',' (comma).
 
 **forward_prefixseq**: several (4-10) upstream nucleotides (promoter) flanking the variable region (protospacer) of sgRNA used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the the PCR product of NGS library.
 
@@ -136,6 +134,8 @@ The configure file is used to set all the necessary parameters and tell the prog
 **gene_sgRNA_position**: name of the sgRNA position file (see above, Step 2, File 3).
 
 **Operon_gene_List**: name of the operon file (see above, Step 2, File 4). **This one is optional, if you do not need it, just leave it blank, note that do not delete the tab when leaving this parameter blank**
+
+**prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
 
 Below is **an example configure file with default parameters**.
 
