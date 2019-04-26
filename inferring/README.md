@@ -107,7 +107,7 @@ The configure file is used to set all the necessary parameters and tell the prog
  
 **fastq**: data directory and all NGS raw data (.fastq or .fq extension). The first item of the content should be the data directory, while the following items refer to the raw NGS data under this directory.
 
-**sample-label**: the label for each NGS raw data file. The order of the label should corresponds to the order of the file names specified by the 'fastq' parameter. For simplicity, it is fine to use raw data file name without extension as label. Note that the labels specified here should be the same as the library name defined in the experiment design file (File 5).
+**sample-label**: the label for each NGS raw data file. The order of the label should corresponds to the order of the file names specified by the 'fastq' parameter. For simplicity, it is fine to use raw data file name without extension as label. Note that the labels specified here should be the same as the library name defined in the experiment design file (see above, Step 2, File 3).
 
 **iniLib**: the NGS data profiling the mutant library prior to cell sorting, used as a reference to eliminate those mutants that are underrepresented in the library.
 
@@ -115,25 +115,23 @@ The configure file is used to set all the necessary parameters and tell the prog
 
 **suffix_nucl**: several (4-10) downstream nucleotides flanking the variable region, used to specify and cut the variable region from the sequencing read. These nucleotides should be located in the the PCR product of NGS library.
 
-**variable_region_len**: number of nucleotides of the variable region on the construct, where the synthetic mutations are introduced. It is determined in the library design. Hence, the length specified here should be consistent with that of the mutant library file (File 2).
+**variable_region_len**: number of nucleotides of the variable region on the construct, where the synthetic mutations are introduced. It is determined in the library design. Hence, the length specified here should be consistent with that of the mutant library file (see above, Step 2, File 2).
 
-**list-seq**: the name of the sgRNA library file (see above, Step 2, File 2).
+**list-seq**: the name of the mutant library file (see above, Step 2, File 2).
 
-**experiment_configure**: the name of the experiment design file (see above, Step 2, File 5).
+**experiment_configure**: the name of the experiment design file (see above, Step 2, File 3).
 
-**name_configure**: the name of the naming file (see above, Step 2, File 6)
+**cell_count_configure**: the name of the cell count file (see above, Step 2, File 4)
 
-**control_setting**: sgRNAs used as control to determine the experimental noise and calculate the statistics of the gene-phenotype association. **Two options: 'NC' or 'all'.** In the case where NC sgRNAs (sgRNA targeting nowhere in the genome, set as gene=‘0’, see Step 2, File 2) are included in the sgRNA library, 'NC' is recommended. In other cases, 'all' should be specified. **We highly recommend to include NC sgRNAs during the experiment and data analysis**, because this option significantly improves the statistical robustness of the experiment. Note that when 'NC' is specified here, NC sgRNAs should be included in the sgRNA-library file (see Step 2, File 2).
+**bin_boundary_configure**: the name of the bin boundary file (see above, Step 2, File 5)
 
-**FDR_threshold**: FDR (False discovery rate) threshold for hit gene calling. Default: 0.05.
+**bin_occupation_configure**: the name of the bin occupation file (see above, Step 2, File 6)
 
-**ReadsThreshold**: threshold of read count used to remove over diluted sgRNAs. Default: 20.
+**ReadsThreshold**: threshold of read count used to eliminate mutants detected less than this threshold in the library prior to cell sorting. Default: 20.
 
-**hit_gene_calling**: method to call hit gene associated with particular phenotype. **Two options: 'position' or 'all', 'position' method is more recommended.** For details, see our paper.
+**log10u_sigma_range**: method to call hit gene associated with particular phenotype. **Two options: 'position' or 'all', 'position' method is more recommended.** For details, see our paper.
 
-**gene_sgRNA_position**: name of the sgRNA position file (see above, Step 2, File 3).
-
-**Operon_gene_List**: name of the operon file (see above, Step 2, File 4). **This one is optional, if you do not need it, just leave it blank, note that do not delete the tab when leaving this parameter blank**
+**search**: .
 
 **prefix**: prefix used for naming of all output files, keep it simple without any ‘-’, ‘_’ and ‘ ’. For example, ‘screen20171001’ is fine.
 
