@@ -233,4 +233,4 @@ TnaC_D21F_TTT|44.7325078673|10.1806952194
 TnaC_D21L_CTT|12.7806094856|51.6880931438
 .............|..............|..............
 
-**Under this directory, the program also creates another heatmap/**: storing a series of .png plots. Each file corresponds to one mutant, specifying the heatmap of probability for each searched average response and noise in each condition. In our algorithm, we generated a 2D grid to search for the optimal average response and noise, while for each of them, one probability can be calculated. Here is an [**example**](./image/myexample_Libray_Gini_Score.png).
+**Under this directory, the program also creates another heatmap/**: storing a series of .png plots. Each file corresponds to one mutant, specifying the heatmap of probability for each searched average response and noise in each condition. In our algorithm, we generated a 2D grid to search for the optimal average response and noise, while for each of them, one probability can be calculated. Here is an [**example**](./image/TnaC_D21P_CCC_Ligand=500uM_opt.png).
