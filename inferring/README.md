@@ -224,54 +224,11 @@ TnaC_D21F_TTT|0.176060666112|0.209409372281
 TnaC_D21L_CTT|0.215278752319|0.21129030229
 .............|..............|..............
  
-============================================================
-#### gene fitness, statistical significance, etc (prefix_gene_statistics/)
-This directory stores all dataset about gene metrics. N files are generated, corresponding to N studied phenotypes.
+**sensor_negLog10P.csv**: the -log10 formatted probability for the calculated response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we use a maximized probability algorithm to calculate the response (this file presents this probability). For details, see our paper. Here is an example.
 
-sgRNAnumber: number of sgRNAs used to produce the metrics for this gene (see 'position' approach in our paper)
-
-MedianRAC: gene fintess
-
-MedianZ: gene fitness normalized by the sigma of NC sgRNA fitness normal distribution
-
--Log10Pvalue_MWUtest: MWU test of sgRNA (of one gene) fitness vs. NC sgRNA fitness
-
-FPRvalue: score approach derived *FPR*; FDRvalue: *Q* value derived from *FPR*;
-
--Log10Pvalue_Ttest: student t test of sgRNA (of one gene) fitness vs. NC sgRNA fitness
-
-Qvalue_Ttest: *Q* value derived from t test *P* value
-
-gene|sgRNAnumber|MedianRAC|MedianZ|negative Log10Pvalue_MWUtest|FDRvalue|FPRvalue|negative Log10Pvalue_Ttest|Qvalue_Ttest
-----|-----------|---------|-------|--------------------|--------|--------|------------------|------------
-gspK|11|-0.19|-0.27|0.76|0.30|0.18|0.74|0.36
-...|...|...|...|...|...|...|...|...
-
-============================================================
-#### FDR-score curve (prefix_quasigeneFDR/)
-A [figure](./image/all_essential_quasigeneFDR.png) and a file describing FDR vs. score relation considering sgRNA number per gene profile in the library using a 'quasi' gene simulation approach. It is used to produce the volcano plot.
-
- phenotype1|phenotype2|...|FDR
- ----------|----------|---|------
- 21.91|...|...|0.001
- 4.36|...|...|0.005
- ...|...|...|...
- 0.72|...|...|0.1
-
-### operon level statistics (reorganize gene data according to the operon file)
--------------------------------------------------------------
-#### reorganize gene fitness and statistical significance according to operon structures (prefix_operon_statistics/)
-3N files corresponding to N phenotypes. 
-
-**prefix_phenotype_RemoveGene_statistics.txt**: flat file describing removed genes due to the availability of sgRNAs
-
-**prefix_phenotype_RemoveOperon_statistics.txt**: flat file describing removed operons due to the availability of genes
-
-**prefix_phenotype_operon_statistics.txt**: reorganized gene fitness and statistical signifcance dataset. Each line refers to one operon. Different types of metrics are seperated by tab. The same type of metrics corresponding to multiple genes in one operon are seperated by comma. For simplicity, only part of gene metrics are included here.
-
-one phenotype
-
-gene|sgRNAnumber|MedianRAC|MedianZ|negative Log10Pvalue_MWUtest|FDRvalue|FPRvalue
-----|-----------|---------|-------|--------------------|--------|--------|
-mtlD,mtlR|8,7|-0.110,-0.248|-0.154,-0.347|0.510,0.724|0.472,0.300|0.410,0.184
-...|...|...|...|...|...|...|
+Sensor|Ligand=100uM|Ligand=500uM
+------|------------|------------
+TnaC|1113.7470669|1078.82034736
+TnaC_D21F_TTT|44.7325078673|10.1806952194
+TnaC_D21L_CTT|12.7806094856|51.6880931438
+.............|..............|..............
