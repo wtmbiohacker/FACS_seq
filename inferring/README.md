@@ -49,7 +49,6 @@ This file specifies the experiment design of FACS-seq. In particular, it defines
 |P4|B1P4|B2P4|
 |P5|B1P5|B2P5|
 |P6|B1P6|B2P6|
-|..|....|....|
 
 **The name of each NGS raw data should be the same as those defined in the configure file (see below)**
 
@@ -65,7 +64,6 @@ This file specifies the number of cells sorted into each bin during FACS-seq. Si
 |P4|100000|100000|
 |P5|100000|100000|
 |P6|50923|51607|
-|..|.....|.....|
 
 
 #### File 5: bin boundary file (see example_bin_boundary_configure.txt)
@@ -79,7 +77,6 @@ This file specifies the boundary of bins used in FACS. Similar to experiment des
 |P4|-0.460,-0.076|-0.460,-0.076|
 |P5|-0.861,-0.460|-0.861,-0.460|
 |P6|-10.000,-0.861|-10.000,-0.861|
-|..|..............|..............|
 
 **In each cell, comma is used to seperate the upper and lower boundary of the relevant bin. Usually, fluorescence signal is used in FACS to define bins; hence, a log10(FLU) is expected here.**
 
@@ -97,7 +94,6 @@ This file specifies the proportion of cells sorted into each bin in the whole po
 |P4|0.18492|0.16726|
 |P5|0.14078|0.12048|
 |P6|0.07443|0.08305|
-|..|.......|.......|
 
 **Note that parameters here are different from those in file 4!!!** One additional experiment (analysis cytometry using mutant library) is needed to obtain the parameters here. Hence, the sum of each column here should be exactly 1. 
 
@@ -196,7 +192,7 @@ TGGTGATGGCTACAGAAGGGCAAATCAAGGGCGGGTGGATCGACAATTTTGTTGTCAATTTGGAACCATTTTGAGGTCAC
 
 **initial_ab.csv**: the absolute abundances in the initial library (prior to sorting) of mutants passing quality control (used in further analysis).
 
-**sensor_ctab/**: storing a series of .csv files. Each file corresponds to one mutant, specifying the read count in each condition and each bin. Each file has a header line and index column using tab as delimiter. Here is an example.
+**Under this directory, the program also creates another sensor_ctab/**: storing a series of .csv files. Each file corresponds to one mutant, specifying the read count in each condition and each bin. Each file has a header line and index column using tab as delimiter. Here is an example.
 
   |Ligand=100uM|Ligand=500uM
   |------------|------------
@@ -207,29 +203,26 @@ P4|304|386
 P5|402|316
 P6|289|277
 
-### gene level statistics: 
+### prefix_optimization/: calculated mutant response
 -------------------------------------------------------------
-#### FPR-score curve (prefix_quasigeneFPR/)
-We use a NC sgRNA derived 'quasi' gene simulation approach (score approach thereafter, we use this method in our paper) (score = |gene fitness| * -Log<sub>10</sub>Pvalue_MWUtest) to determine the false positive rate (*FPR*) for each gene-phenotype association. Hence, for each studied phenotype, the program give 15 simulated *FPR*-score curves with 1 ~ 15 sgRNAs per quasi gene, respectively. Thus, 15 files describing these curves and [one figure file](./image/all_essential_quasigeneFPR.png) are in this sub directory.
 
-============================================================
-#### P value-Q value curve (prefix_Pvalue_Qvalue/)
-We use a Storey-Tibshirani approach (PNAS 2003) to convert *FPR* into *Q* values. We also use a simple student t test method (sgRNA for one gene vs NC sgRNAs) (t test approach thereafter) to calculate another *P* value and convert it into *Q* values.
+**sensor_Log10u.csv**: the average response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we assume the response of each mutant follows a normal distribution (this file presents average of this normal distribution). For details, see our paper. Here is an example. 
 
- 1. **Qvalue_scoreFPR.txt**: score approach derived *P-Q* value curve for all phenotypes.
+Sensor|Ligand=100uM|Ligand=500uM
+------|------------|------------
+TnaC|0.0579297301691|0.486206896552
+TnaC_D21F_TTT|-0.270944057774|0.0251132128214
+TnaC_D21L_CTT|0.0264700184139|0.154786618435
+.............|...............|..............
  
- phenotype1|phenotype2|...|Qvalue
- ----------|----------|---|------
- 0.00015|...|...|0.001
- 0.00084|...|...|0.005
- ...|...|...|...
- 0.03180|...|...|0.1
- 
-  2. **Qvalue_TtestPvalue.txt**: t test approach derived *P-Q* value curve for all phenotypes, similar to above.
-  
-  3. Distributions of *FPR* (or t test *P*) for all genes (2N [figures](./image/all_essential_Ttest_pValue.png), N = number of phenotypes).
-  
-  4. Comparison of *P-Q* curves from two approaches (N [figures](./image/Ilovemicrobe_example_Pvalue_Qvalue.png), N = number of phenotypes).
+**sensor_sigma.csv**: the response noise of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we assume the response of each mutant follows a normal distribution (this file presents the deviation of this normal distribution). For details, see our paper. Here is an example.
+
+Sensor|Ligand=100uM|Ligand=500uM
+------|------------|------------
+TnaC|0.388918435615|0.146551724138
+TnaC_D21F_TTT|0.176060666112|0.209409372281
+TnaC_D21L_CTT|0.215278752319|0.21129030229
+.............|..............|..............
  
 ============================================================
 #### gene fitness, statistical significance, etc (prefix_gene_statistics/)
