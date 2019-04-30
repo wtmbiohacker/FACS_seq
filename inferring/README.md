@@ -189,7 +189,7 @@ TGGTGATGGCTACAGAAGGGCAAATCAAGGGCGGGTGGATCGACAATTTTGTTGTCAATTTGGAACCATTTTGAGGTCAC
 
 [**prefix_Libray_Gini_Score.png**](./image/myexample_Libray_Gini_Score.png): schematic of Gini index for each library.
 
-### sgRNA level statistics
+### prefix_cleandataset/ (mutant-centered read count data in multiple conditions)
 -------------------------------------------------------------
 #### removed sgRNAs (removed.sgRNA/)
 We remove the over diluted sgRNAs with read count less than one threshold ('ReadsThreshold' described in the configure file part).
