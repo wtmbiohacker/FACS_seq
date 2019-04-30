@@ -224,7 +224,7 @@ TnaC_D21F_TTT|0.176060666112|0.209409372281
 TnaC_D21L_CTT|0.215278752319|0.21129030229
 .............|..............|..............
  
-**sensor_negLog10P.csv**: the -log10 formatted probability for the calculated response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we use a maximized probability algorithm to calculate the response (this file presents this probability). For details, see our paper. Here is an example.
+**sensor_negLog10P.csv**: the -log10 formatted probability (thus smaller this value, bigger probability) for the calculated response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we use a maximized probability algorithm to calculate the response (this file presents this probability). For details, see our paper. Here is an example.
 
 Sensor|Ligand=100uM|Ligand=500uM
 ------|------------|------------
@@ -232,3 +232,5 @@ TnaC|1113.7470669|1078.82034736
 TnaC_D21F_TTT|44.7325078673|10.1806952194
 TnaC_D21L_CTT|12.7806094856|51.6880931438
 .............|..............|..............
+
+**Under this directory, the program also creates another heatmap/**: storing a series of .png plots. Each file corresponds to one mutant, specifying the heatmap of probability for each searched average response and noise in each condition. In our algorithm, we generated a 2D grid to search for the optimal average response and noise, while for each of them, one probability can be calculated. Here is an [**example**](./image/myexample_Libray_Gini_Score.png).
