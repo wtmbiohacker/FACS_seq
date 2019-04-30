@@ -180,7 +180,14 @@ TnaC|4|0|0|0|7|11|4|0|0|0|10|18|0
 
 **This dataset is used for following data processing.**
 
-[**prefix_Libray_Gini_Score.png**](./image/all_Libray_Gini_Score.png): schematic of Gini index for each library.
+**prefix.unmapped.txt**: unmapped read in NGS raw data, having a header line using tab as delimiter
+
+unmapped read|Lib1|B1P1|B1P2|B1P3|B1P4|B1P5|B1P6|B2P1|B2P2|B2P3|B2P4|B2P5|B2P6
+-------------|----|----|----|----|----|----|----|----|----|----|----|----|----
+TGGTGATGGCTACAGAAGGGCAAATCAAGGGCGGGTGGATCGACAATTTTGTTGTCAATTTGGAACCATTTTGAGGTCACACATATATGTAAGATATTCATAATGCACTTATCCTCGCAAGACACAGCCATGGTC|0|0|0|0|0|0|0|0|0|1|0|0|0\
+....|...|...|...|...|...|...|...|...|...|...|...|...|...
+
+[**prefix_Libray_Gini_Score.png**](./image/myexample_Libray_Gini_Score.png): schematic of Gini index for each library.
 
 ### sgRNA level statistics
 -------------------------------------------------------------
