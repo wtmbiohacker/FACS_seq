@@ -192,83 +192,20 @@ TGGTGATGGCTACAGAAGGGCAAATCAAGGGCGGGTGGATCGACAATTTTGTTGTCAATTTGGAACCATTTTGAGGTCAC
 ### prefix_cleandataset/ (mutant-centered read count data in multiple conditions)
 -------------------------------------------------------------
 
- 1. **prefix.eliminate.txt**: mutants that are eliminated from further analysis, due to the over-diluted representation in the initial library; a simple list flat file with one sgRNA each line
+**prefix.eliminate.txt**: mutants that are eliminated from further analysis, due to the over-diluted representation in the initial library; a simple list flat file with one sgRNA each line. The threshold used here is defined in the configure file.
 
-============================================================
-#### biological replicate agreement (replicate_consistence/)
-Files under this dierectory is a minotoring panel for biological replicate agreement. The replicate information is encoded by the experiment design file (Step 2, File 5). Generally, for N experiments with 2 replicates each, the program produces N scatter plots and N flat files to describe the consistence between replicates for each experiment. One summarizing flat file for all conditions is also given.
+**initial_ab.csv**: the absolute abundances in the initial library (prior to sorting) of mutants passing quality control (used in further analysis).
 
- 1. **prefix_replicates_reads_statistics.txt**: the summary file
- 
- condition|pearson correlation coefficient|P value
- ---------|-------------------------------|-------
- stress1|0.868|0.0
- control1|0.832|0.0
- ...|...|...
+**sensor_ctab/**: storing a series of .csv files. Each file corresponds to one mutant, specifying the read count in each condition and each bin. Each file has a header line and index column using tab as delimiter. Here is an example.
 
- 2. **prefix_oneexperiment_replicates.txt**: two-column flat file of read count of each sgRNA in two replicates. For example, NCR1 and NCR2 (in our test data) are two replicates for one experiment.
- 
- sgRNA|NCR1_abundance|NCR1_reads|NCR1_abundance_vs_initial|NCR2_abundance|NCR2_reads|NCR2_abundance_vs_initial
- -----|--------------|----------|-------------------------|--------------|----------|-------------------------
- gspKb3332_817|-16.22|10.95|0.46|-16.51|8.95|0.16
- ...|...|...|...|...|...|...
-
- 3. [**prefix_oneexperiment_replicates.png**](./image/all_control1_replicates.png): schematic of replicate agreement of one particular experiment.
-
-============================================================
-#### sgRNA read count, abundance change, fitness score, etc (prefix_sgRNA_statistics/)
-This directory stores all dataset about sgRNA metrics. It is generally organized at three levels (three sub directories):
- 1. **Library level** (information of one NGS library). N files, N = number of rows in experiment design file.
- 
- sgRNA|gene|plasmid_Log2_abundnace|plasmid_reads|plasmid_Log2_abundnace_vs_initial
- -----|----|----------------------|-------------|---------------------------------
- gspKb3332_817|gspK|-16.68|7.98|0.0
- ...|...|...|...|...|
-
- 2. **Condition level** (information of one experiement (average of two replicate NGS library)). N files, N = number of columns in experiment design file.
- 
- sgRNA|gene|control1_Log2_abundnace|control1_reads|control1_Log2_abundnace_vs_initial|control1_relative_deviation
- -----|----|----------------------|---------------|----------------------------------|---------------------------
- gspKb3332_817|gspK|-16.37|9.90|0.31|0.10
- ...|...|...|...|...|...
-
- 3. **Phenotype level (only need to focus on this level for simplicity)** (information of one phenotype (selective condition normalized by the control condition), under combined_condition_level directory). N files, N = number of 'stress'(selective) conditions in experiment design file.
- 
- relative_abundnace_change = Log<sub>2</sub> (read count selective condition / read count control condition)
- 
- normalized_change (**it is used as sgRNA fitness score**) = relative_abundnace_change - median relative_abundnace_change of NC sgRNAs
- 
- Zscore = normalized_change / sigma of NC sgRNA normalized_change normal distribution
- 
- Quality: it is tagged as 'Good' if the averaged read count in control condition is above the threshold ('ReadsThreshold' described in the configure file). **Only 'Good' sgRNAs are used in gene level calculation**.
-  
- sgRNA|gene|relative_abundnace_change|normalized_change|Zscore|Quality
- -----|----|-------------------------|-----------------|------|-------
- gspKb3332_817|gspK|0.22|-0.03|-0.04|Good
- ...|...|...|...|...
-
-============================================================
-#### NC sgRNA distribution (NCsgRNA_ND/)
-Theoretically, fitness socre (log2 abundance change) of NC sgRNA should follow a normal distribution. We hence use a normal distribution to fit NC sgRNA fitness score data.
-
- 1. **prefix_NCsgRNA_ND.txt**: normal distribution of NC sgRNA relative abundance changes (before normalization by median of NC sgRNA relative abundance change, referring to 'relative_abundnace_change' column in phenotype level sgRNA statistics)
- 
- condition|median|mean|stdev
- ---------|------|----|-----
- phenotype1|0.25|0.16|0.71
- phenotype2|0.25|0.16|0.71
- ...|...|...|...
-
- 2. **prefix_NCsgRNA_normalized_ND.txt**: normal distribution of NC sgRNA fitness scores (after normalization by median of NC sgRNA relative abundance change, referring to 'normalized_change' column in phenotype level sgRNA statistics)
- 
- condition|median|mean|stdev
- ---------|------|----|-----
- phenotype1|0.0|-0.09|0.71
- phenotype2|0.0|-0.09|0.71
- ...|...|...|...
-
- 3. [**prefix_phenotype_NCsgRNAND.png**](./image/all_essential_NCsgRNAND.png): schematic of NC sgRNA fitness score distribution.
-
+  |Ligand=100uM|Ligand=500uM
+  |------------|------------
+P1|1144|1644
+P2|2650|2560
+P3|497|486
+P4|304|386
+P5|402|316
+P6|289|277
 
 ### gene level statistics: 
 -------------------------------------------------------------
