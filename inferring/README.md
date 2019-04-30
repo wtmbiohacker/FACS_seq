@@ -191,10 +191,8 @@ TGGTGATGGCTACAGAAGGGCAAATCAAGGGCGGGTGGATCGACAATTTTGTTGTCAATTTGGAACCATTTTGAGGTCAC
 
 ### prefix_cleandataset/ (mutant-centered read count data in multiple conditions)
 -------------------------------------------------------------
-#### removed sgRNAs (removed.sgRNA/)
-We remove the over diluted sgRNAs with read count less than one threshold ('ReadsThreshold' described in the configure file part).
 
- 1. **prefix.removed.sgRNA.txt**: a simple list flat file with one sgRNA each line
+ 1. **prefix.eliminate.txt**: mutants that are eliminated from further analysis, due to the over-diluted representation in the initial library; a simple list flat file with one sgRNA each line
 
 ============================================================
 #### biological replicate agreement (replicate_consistence/)
