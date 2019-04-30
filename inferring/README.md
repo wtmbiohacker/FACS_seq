@@ -176,14 +176,9 @@ Reads denote the number of reads in the raw data. Mapped denotes number of reads
 sensor|Lib1|B1P1|B1P2|B1P3|B1P4|B1P5|B1P6|B2P1|B2P2|B2P3|B2P4|B2P5|B2P6
 ------|----|----|----|----|----|----|----|----|----|----|----|----|----
 TnaC|4|0|0|0|7|11|4|0|0|0|10|18|0
-....|.|.|.|.|.|..|.|.|.|.|..|..|.
+....|...|...|...|...|...|...|...|...|...|...|...|...|...
 
-**prefix.normalizeCount.txt**: read count for each sgRNA in the *in silico* library **after normalization of sequencing depth** (for details, see our paper). **This dataset is used for following data processing.**
-
-sgRNA|Gene|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
------|----|-------|-------|----|----|-------
-gspKb3332_817|gspK|12.07|11.08|10.95|8.95|7.98
-...|...|...|...|...|...|...
+**This dataset is used for following data processing.**
 
 [**prefix_Libray_Gini_Score.png**](./image/all_Libray_Gini_Score.png): schematic of Gini index for each library.
 
