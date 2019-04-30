@@ -160,9 +160,8 @@ Three subdirectories are located under this result directory, namely, prefix_raw
 
 Below is the description for each of them.
 
-### NGS raw data profile
+### prefix_rawcount/ (mapping of the raw NGS data to synthetic library)
 -------------------------------------------------------------
-#### read count of each sgRNA in each library (prefix_count/)
 **prefix.countsummary.txt**: basic statistics of the mapping ratio of each NGS library with a header line using tab as delimiter.
 
 File|Label|Reads|Mapped|Synerror|Unknown|Percentage|Zerocounts|GiniIndex
@@ -170,9 +169,9 @@ File|Label|Reads|Mapped|Synerror|Unknown|Percentage|Zerocounts|GiniIndex
 example_data/plasmid.fq.gz|plasmid|1000000|838484|90356|71160|0.8385|1734|0.2167
 ...|...|...|...|...|...|...|...|...
 
-Reads denote the number of reads in the raw data. Mapped denotes number of reads mapping perfectly to one member of the synthetic sgRNA library. Synerror refers to those reads with one indel mutation or more mismatch mutations. Unknown refers to those reads where no forward_prefixseq or forward_suffixseq can be identified. Percentage is the mapping ratio. Zerocount refers to sgRNA number in the *in silico* library without any corresponding read detected. GiniIndex is a metric reflecting the member abundance uniformity in a library. Bigger Gini index indicates more biased distribution with over- represented or diluted members. Generally, more stringent the selective condition is, bigger Gini index we can expect. 
+Reads denote the number of reads in the raw data. Mapped denotes number of reads mapping perfectly to one member of the synthetic mutant library. Synerror refers to those reads with one indel mutation or more mismatch mutations. Unknown refers to those reads where no forward_prefixseq or forward_suffixseq can be identified. Percentage is the mapping ratio. Zerocount refers to sgRNA number in the *in silico* library without any corresponding read detected. GiniIndex is a metric reflecting the member abundance uniformity in a library. Bigger Gini index indicates more biased distribution with over- represented or diluted members. Generally, more stringent the selective condition is (e.g. the bin with highest fluorescence), bigger Gini index we can expect.
 
-**prefix.count.txt**: raw read count for each sgRNA in the *in silico* library **before normalization**.
+**prefix.count.txt**: raw read count for each mutant in the *in silico* library.
 
 sgRNA|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
 -----|-------|-------|----|----|-------
