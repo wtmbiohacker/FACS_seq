@@ -151,7 +151,7 @@ python HTsensor_main.py example_configure.txt
 
 The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using it.
 
-For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is the mapping of the raw NGS read. For a typical Macbook, we expect a processing speed of 20 million reads per hour.
+For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 5 minutes. The rate-limiting step is the mapping of the raw NGS read. For a typical Macbook, we expect a processing speed of 20 million reads per hour.
 
 ## Output files
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex_results). We term this subdirectory 'result directory' thereafter.
@@ -173,10 +173,10 @@ Reads denote the number of reads in the raw data. Mapped denotes number of reads
 
 **prefix.count.txt**: raw read count for each mutant in the *in silico* library.
 
-sgRNA|dCas9R1|dCas9R2|NCR1|NCR2|plasmid
------|-------|-------|----|----|-------
-gspKb3332_817|12|11|11|9|8
-...|...|...|...|...|...
+sensor|Lib1|B1P1|B1P2|B1P3|B1P4|B1P5|B1P6|B2P1|B2P2|B2P3|B2P4|B2P5|B2P6
+------|----|----|----|----|----|----|----|----|----|----|----|----|----
+TnaC|4|0|0|0|7|11|4|0|0|0|10|18|0
+....|.|.|.|.|.|..|.|.|.|.|..|..|.
 
 **prefix.normalizeCount.txt**: read count for each sgRNA in the *in silico* library **after normalization of sequencing depth** (for details, see our paper). **This dataset is used for following data processing.**
 
