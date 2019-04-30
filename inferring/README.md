@@ -149,8 +149,6 @@ python HTsensor_main.py configure.txt
 We also post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
 python HTsensor_main.py example_configure.txt
 
-Check [here](./image/successful_running.png) for the output during a successful running of the abovementioned test.
-
 The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using it.
 
 For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the example test can be finalized within 30 minutes. The rate-limiting step is the mapping of the raw NGS read. For a typical Macbook, we expect a processing speed of 20 million reads per hour.
@@ -158,13 +156,9 @@ For a typical Macbook (for example, 2.6 GHz processor and 8 GB memory), the exam
 ## Output files
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex_results). We term this subdirectory 'result directory' thereafter.
 
-[your working directory should be like this after running the test](./image/wkd_after_example_running.png)
+Three subdirectories are located under this result directory, namely, prefix_rawcount, prefix_cleandataset and prefix_optimization. These directories store results about mapping of the raw NGS data to synthetic library, mutant-centered read count data in multiple conditions, calculated mutant response, respectively.
 
-You can find many sub directories under the result directory.
-
-[your result directory after running the test](./image/resultdir_after_example_running.png)
-
-Below is the description. For the mathematical processing, see our paper. **All .csv flat files use tab as delimiter unless mentioned**
+Below is the description for each of them.
 
 ### NGS raw data profile
 -------------------------------------------------------------
