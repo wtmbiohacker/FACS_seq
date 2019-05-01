@@ -124,58 +124,21 @@ The program will create an 'error.log' file under the working directory, open th
 ## Output files
 The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex_results). We term this subdirectory 'result directory' thereafter.
 
-Three subdirectories are located under this result directory, namely, prefix_rawcount, prefix_cleandataset and prefix_optimization. These directories store results about mapping of the raw NGS data to synthetic library, mutant-centered read count data in multiple conditions, calculated mutant response, respectively.
+Three subdirectories are located under this result directory, namely, prefix_library, prefix_optimization and prefix_comparison. These directories store results about de novo created mutant library, calculated mutant response and the consistency between the original setting and "experimentally determined" response, respectively.
 
 Below is the description for each of them.
 
-### prefix_rawcount/ (mapping of the raw NGS data to synthetic library)
+### prefix_library/ (de novo created mutant library)
 -------------------------------------------------------------
-**prefix.countsummary.txt**: basic statistics of the mapping ratio of each NGS library with a header line using tab as delimiter.
+**my_library.txt**: de novo created mutant library, namely, the initial abundance, average response, and response noise of each mutant (row). This file has a header line and index column using tab as delimiter. Here is an example. 
 
-File|Label|Reads|Mapped|Synerror|Unknown|Percentage|Zerocounts|GiniIndex
-----|-----|-----|------|--------|-------|----------|----------|---------
-example_data/plasmid.fq.gz|plasmid|1000000|838484|90356|71160|0.8385|1734|0.2167
-...|...|...|...|...|...|...|...|...
+Sensor|Abundance|Log10u|sigma
+------|---------|------|-----
+mutant0|0.0233|0.2066|0.1592
+mutant1|0.0082|-0.4356|0.2399
+...|...|...|...|
 
-Reads denote the number of reads in the raw data. Mapped denotes number of reads mapping perfectly to one member of the synthetic mutant library. Synerror refers to those reads with one indel mutation or more mismatch mutations. Unknown refers to those reads where no forward_prefixseq or forward_suffixseq can be identified. Percentage is the mapping ratio. Zerocount refers to sgRNA number in the *in silico* library without any corresponding read detected. GiniIndex is a metric reflecting the member abundance uniformity in a library. Bigger Gini index indicates more biased distribution with over- represented or diluted members. Generally, more stringent the selective condition is (e.g. the bin with highest fluorescence), bigger Gini index we can expect.
-
-**prefix.count.txt**: raw read count for each mutant in the *in silico* library.
-
-sensor|Lib1|B1P1|B1P2|B1P3|B1P4|B1P5|B1P6|B2P1|B2P2|B2P3|B2P4|B2P5|B2P6
-------|----|----|----|----|----|----|----|----|----|----|----|----|----
-TnaC|4|0|0|0|7|11|4|0|0|0|10|18|0
-....|...|...|...|...|...|...|...|...|...|...|...|...|...
-
-**This dataset is used for following data processing.**
-
-**prefix.unmapped.txt**: unmapped read in NGS raw data, having a header line using tab as delimiter
-
-unmapped read|Lib1|B1P1|B1P2|B1P3|B1P4|B1P5|B1P6|B2P1|B2P2|B2P3|B2P4|B2P5|B2P6
--------------|----|----|----|----|----|----|----|----|----|----|----|----|----
-TGGTGATGGCTACAGAAGGGCAAATCAAGGGCGGGTGGATCGACAATTTTGTTGTCAATTTGGAACCATTTTGAGGTCACACATATATGTAAGATATTCATAATGCACTTATCCTCGCAAGACACAGCCATGGTC|0|0|0|0|0|0|0|0|0|1|0|0|0\
-....|...|...|...|...|...|...|...|...|...|...|...|...|...
-
-[**prefix_Libray_Gini_Score.png**](./image/myexample_Libray_Gini_Score.png): schematic of Gini index for each library.
-
-### prefix_cleandataset/ (mutant-centered read count data in multiple conditions)
--------------------------------------------------------------
-
-**prefix.eliminate.txt**: mutants that are eliminated from further analysis, due to the over-diluted representation in the initial library; a simple list flat file with one sgRNA each line. The threshold used here is defined in the configure file.
-
-**initial_ab.csv**: the absolute abundances in the initial library (prior to sorting) of mutants passing quality control (used in further analysis).
-
-**Under this directory, the program also creates another sensor_ctab/**: storing a series of .csv files. Each file corresponds to one mutant, specifying the read count in each condition and each bin. Each file has a header line and index column using tab as delimiter. Here is an example.
-
-  |Ligand=100uM|Ligand=500uM
-  |------------|------------
-P1|1144|1644
-P2|2650|2560
-P3|497|486
-P4|304|386
-P5|402|316
-P6|289|277
-
-### prefix_optimization/: calculated mutant response
+### prefix_optimization/: calculated mutant response (all the same as that of inferring package)
 -------------------------------------------------------------
 
 **sensor_Log10u.csv**: the average response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we assume the response of each mutant follows a normal distribution (this file presents average of this normal distribution). For details, see our paper. Here is an example. 
