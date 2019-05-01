@@ -210,27 +210,27 @@ P6|289|277
 
 Sensor|Ligand=100uM|Ligand=500uM
 ------|------------|------------
-TnaC|0.0579297301691|0.486206896552
-TnaC_D21F_TTT|-0.270944057774|0.0251132128214
-TnaC_D21L_CTT|0.0264700184139|0.154786618435
-.............|...............|..............
+TnaC|0.0579|0.4862
+TnaC_D21F_TTT|-0.2709|0.0251
+TnaC_D21L_CTT|0.0265|0.1548
+...|...|...
  
 **sensor_sigma.csv**: the response noise of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we assume the response of each mutant follows a normal distribution (this file presents the deviation of this normal distribution). For details, see our paper. Here is an example.
 
 Sensor|Ligand=100uM|Ligand=500uM
 ------|------------|------------
-TnaC|0.388918435615|0.146551724138
-TnaC_D21F_TTT|0.176060666112|0.209409372281
-TnaC_D21L_CTT|0.215278752319|0.21129030229
-.............|..............|..............
+TnaC|0.3889|0.1466
+TnaC_D21F_TTT|0.1761|0.2094
+TnaC_D21L_CTT|0.2153|0.2113
+...|...|...
  
 **sensor_negLog10P.csv**: the -log10 formatted probability (thus smaller this value, bigger probability) for the calculated response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we use a maximized probability algorithm to calculate the response (this file presents this probability). For details, see our paper. Here is an example.
 
 Sensor|Ligand=100uM|Ligand=500uM
 ------|------------|------------
-TnaC|1113.7470669|1078.82034736
-TnaC_D21F_TTT|44.7325078673|10.1806952194
-TnaC_D21L_CTT|12.7806094856|51.6880931438
-.............|..............|..............
+TnaC|1113.7|1078.8
+TnaC_D21F_TTT|44.7|10.2
+TnaC_D21L_CTT|12.8|51.7
+...|...|...
 
 **Under this directory, the program also creates another heatmap/**: storing a series of .png plots. Each file corresponds to one mutant, specifying the heatmap of probability for each searched average response and noise in each condition. In our algorithm, we generated a 2D grid to search for the optimal average response and noise, while for each of them, one probability can be calculated. Here is an [**example**](./image/TnaC_D21P_CCC_Ligand=500uM_opt.png).
