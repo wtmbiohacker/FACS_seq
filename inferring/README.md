@@ -139,10 +139,13 @@ see **example_configure.txt**.
 ### Step 4：Run the pipeline
 Put all necessary files mentioned above, as well as the data directory under the working directory.
 Open the command line window, cd to the working directory and run the analysis pipeline.
+
 cd path_to_your_working_directory
+
 python HTsensor_main.py configure.txt
 
 We also post a toy example together with the scripts and the example_configure.txt has been edit to make it compatible. For this test, cd to the working directory, type in: 
+
 python HTsensor_main.py example_configure.txt
 
 The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using it.
