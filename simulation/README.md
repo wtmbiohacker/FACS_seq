@@ -1,7 +1,7 @@
 # FACS-seq method to profile mutant library of regulatory element: simulation package
 
 ## What is this?
-This python script collection is one of the two the software subpackages of FACS-seq, used for simulation prior to real experiment to determine some essential parameters, such as the bin numers used in real sorting experiment. The paper describing this program is currently under review. Please cite this paper if this program is useful to your work.
+This python script collection is one of the two the software subpackages of FACS-seq, used for simulation prior to real experiment to determine some essential parameters, such as the bin numers used in real sorting experiment.
 
 ## General description of the algorithm and experiment
 Briefly, the simulation create an de novo mutant library; and specify the response for each of them. Then, in silico sorting and NGS experiments are performed to generate a simulated NGS data. These datasets are processed by all the same scripts as described in "inferring" package to calculate the "experimentally determined" response for each mutant. Finally, comparison is executed to check the consistency between the original setting and "experimentally determined" response.
@@ -120,3 +120,89 @@ python HTsensor_simulation_main.py example_configure_simulation.txt
 
 The program will create an 'error.log' file under the working directory, open this file to check whether anything wrong happens. Generally, no content suggests successful running. Please post your 'error.log' if you cannot figure out the bugs when using it.
 
+
+## Output files
+The output files will be organized in the subdirectory whose name is specified by the 'prefix' option in configure file under the working directory (prefiex_results). We term this subdirectory 'result directory' thereafter.
+
+Three subdirectories are located under this result directory, namely, prefix_rawcount, prefix_cleandataset and prefix_optimization. These directories store results about mapping of the raw NGS data to synthetic library, mutant-centered read count data in multiple conditions, calculated mutant response, respectively.
+
+Below is the description for each of them.
+
+### prefix_rawcount/ (mapping of the raw NGS data to synthetic library)
+-------------------------------------------------------------
+**prefix.countsummary.txt**: basic statistics of the mapping ratio of each NGS library with a header line using tab as delimiter.
+
+File|Label|Reads|Mapped|Synerror|Unknown|Percentage|Zerocounts|GiniIndex
+----|-----|-----|------|--------|-------|----------|----------|---------
+example_data/plasmid.fq.gz|plasmid|1000000|838484|90356|71160|0.8385|1734|0.2167
+...|...|...|...|...|...|...|...|...
+
+Reads denote the number of reads in the raw data. Mapped denotes number of reads mapping perfectly to one member of the synthetic mutant library. Synerror refers to those reads with one indel mutation or more mismatch mutations. Unknown refers to those reads where no forward_prefixseq or forward_suffixseq can be identified. Percentage is the mapping ratio. Zerocount refers to sgRNA number in the *in silico* library without any corresponding read detected. GiniIndex is a metric reflecting the member abundance uniformity in a library. Bigger Gini index indicates more biased distribution with over- represented or diluted members. Generally, more stringent the selective condition is (e.g. the bin with highest fluorescence), bigger Gini index we can expect.
+
+**prefix.count.txt**: raw read count for each mutant in the *in silico* library.
+
+sensor|Lib1|B1P1|B1P2|B1P3|B1P4|B1P5|B1P6|B2P1|B2P2|B2P3|B2P4|B2P5|B2P6
+------|----|----|----|----|----|----|----|----|----|----|----|----|----
+TnaC|4|0|0|0|7|11|4|0|0|0|10|18|0
+....|...|...|...|...|...|...|...|...|...|...|...|...|...
+
+**This dataset is used for following data processing.**
+
+**prefix.unmapped.txt**: unmapped read in NGS raw data, having a header line using tab as delimiter
+
+unmapped read|Lib1|B1P1|B1P2|B1P3|B1P4|B1P5|B1P6|B2P1|B2P2|B2P3|B2P4|B2P5|B2P6
+-------------|----|----|----|----|----|----|----|----|----|----|----|----|----
+TGGTGATGGCTACAGAAGGGCAAATCAAGGGCGGGTGGATCGACAATTTTGTTGTCAATTTGGAACCATTTTGAGGTCACACATATATGTAAGATATTCATAATGCACTTATCCTCGCAAGACACAGCCATGGTC|0|0|0|0|0|0|0|0|0|1|0|0|0\
+....|...|...|...|...|...|...|...|...|...|...|...|...|...
+
+[**prefix_Libray_Gini_Score.png**](./image/myexample_Libray_Gini_Score.png): schematic of Gini index for each library.
+
+### prefix_cleandataset/ (mutant-centered read count data in multiple conditions)
+-------------------------------------------------------------
+
+**prefix.eliminate.txt**: mutants that are eliminated from further analysis, due to the over-diluted representation in the initial library; a simple list flat file with one sgRNA each line. The threshold used here is defined in the configure file.
+
+**initial_ab.csv**: the absolute abundances in the initial library (prior to sorting) of mutants passing quality control (used in further analysis).
+
+**Under this directory, the program also creates another sensor_ctab/**: storing a series of .csv files. Each file corresponds to one mutant, specifying the read count in each condition and each bin. Each file has a header line and index column using tab as delimiter. Here is an example.
+
+  |Ligand=100uM|Ligand=500uM
+  |------------|------------
+P1|1144|1644
+P2|2650|2560
+P3|497|486
+P4|304|386
+P5|402|316
+P6|289|277
+
+### prefix_optimization/: calculated mutant response
+-------------------------------------------------------------
+
+**sensor_Log10u.csv**: the average response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we assume the response of each mutant follows a normal distribution (this file presents average of this normal distribution). For details, see our paper. Here is an example. 
+
+Sensor|Ligand=100uM|Ligand=500uM
+------|------------|------------
+TnaC|0.0579|0.4862
+TnaC_D21F_TTT|-0.2709|0.0251
+TnaC_D21L_CTT|0.0265|0.1548
+...|...|...
+ 
+**sensor_sigma.csv**: the response noise of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we assume the response of each mutant follows a normal distribution (this file presents the deviation of this normal distribution). For details, see our paper. Here is an example.
+
+Sensor|Ligand=100uM|Ligand=500uM
+------|------------|------------
+TnaC|0.3889|0.1466
+TnaC_D21F_TTT|0.1761|0.2094
+TnaC_D21L_CTT|0.2153|0.2113
+...|...|...
+ 
+**sensor_negLog10P.csv**: the -log10 formatted probability (thus smaller this value, bigger probability) for the calculated response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we use a maximized probability algorithm to calculate the response (this file presents this probability). For details, see our paper. Here is an example.
+
+Sensor|Ligand=100uM|Ligand=500uM
+------|------------|------------
+TnaC|1113.7|1078.8
+TnaC_D21F_TTT|44.7|10.2
+TnaC_D21L_CTT|12.8|51.7
+...|...|...
+
+**Under this directory, the program also creates another heatmap/**: storing a series of .png plots. Each file corresponds to one mutant, specifying the heatmap of probability for each searched average response and noise in each condition. In our algorithm, we generated a 2D grid to search for the optimal average response and noise, while for each of them, one probability can be calculated. Here is an [**example**](./image/TnaC_D21P_CCC_Ligand=500uM_opt.png).
