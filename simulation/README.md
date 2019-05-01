@@ -168,4 +168,16 @@ TnaC_D21F_TTT|44.7|10.2
 TnaC_D21L_CTT|12.8|51.7
 ...|...|...
 
-**Under this directory, the program also creates another heatmap/**: storing a series of .png plots. Each file corresponds to one mutant, specifying the heatmap of probability for each searched average response and noise in each condition. In our algorithm, we generated a 2D grid to search for the optimal average response and noise, while for each of them, one probability can be calculated. Here is an [**example**](./image/TnaC_D21P_CCC_Ligand=500uM_opt.png).
+**Under this directory, the program also creates another heatmap/**: storing a series of .png plots. Each file corresponds to one mutant, specifying the heatmap of probability for each searched average response and noise in each condition. In our algorithm, we generated a 2D grid to search for the optimal average response and noise, while for each of them, one probability can be calculated.
+
+
+### prefix_comparison/: consistency between the original setting and "experimentally determined" response
+-------------------------------------------------------------
+
+**simulation_data.csv**: the originally set and "experimentally determined" response for each mutant. This file has a header line and index column using tab as delimiter. Here is an example. 
+
+Sensor|Abundance|Log10u|sigma|Calculated Log10u|Calculated sigma
+------|---------|------|-----|-----------------|----------------
+mutant0|0.0233|0.2066|0.1592|0.1895|0.1346
+mutant1|0.0082|-0.4356|0.2399|-0.4556|0.3039
+...|...|...|...|...|...
