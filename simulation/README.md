@@ -145,27 +145,24 @@ mutant1|0.0082|-0.4356|0.2399
 
 Sensor|Ligand=100uM|Ligand=500uM
 ------|------------|------------
-TnaC|0.0579|0.4862
-TnaC_D21F_TTT|-0.2709|0.0251
-TnaC_D21L_CTT|0.0265|0.1548
+mutant0|0.0579|0.4862
+mutant1|-0.2709|0.0251
 ...|...|...
  
 **sensor_sigma.csv**: the response noise of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we assume the response of each mutant follows a normal distribution (this file presents the deviation of this normal distribution). For details, see our paper. Here is an example.
 
 Sensor|Ligand=100uM|Ligand=500uM
 ------|------------|------------
-TnaC|0.3889|0.1466
-TnaC_D21F_TTT|0.1761|0.2094
-TnaC_D21L_CTT|0.2153|0.2113
+mutant0|0.3889|0.1466
+mutant1|0.1761|0.2094
 ...|...|...
  
 **sensor_negLog10P.csv**: the -log10 formatted probability (thus smaller this value, bigger probability) for the calculated response of each mutant (row) in each condition (column). This file has a header line and index column using tab as delimiter. Note that we use a maximized probability algorithm to calculate the response (this file presents this probability). For details, see our paper. Here is an example.
 
 Sensor|Ligand=100uM|Ligand=500uM
 ------|------------|------------
-TnaC|1113.7|1078.8
-TnaC_D21F_TTT|44.7|10.2
-TnaC_D21L_CTT|12.8|51.7
+mutant0|1113.7|1078.8
+mutant1|44.7|10.2
 ...|...|...
 
 **Under this directory, the program also creates another heatmap/**: storing a series of .png plots. Each file corresponds to one mutant, specifying the heatmap of probability for each searched average response and noise in each condition. In our algorithm, we generated a 2D grid to search for the optimal average response and noise, while for each of them, one probability can be calculated.
@@ -181,3 +178,7 @@ Sensor|Abundance|Log10u|sigma|Calculated Log10u|Calculated sigma
 mutant0|0.0233|0.2066|0.1592|0.1895|0.1346
 mutant1|0.0082|-0.4356|0.2399|-0.4556|0.3039
 ...|...|...|...|...|...
+
+**Log10u_comparison.png** scatter plot to check the consistency of average response. Here is an [example](./image/Log10u_comparison.png)
+
+**sigma_comparison.png** scatter plot to check the consistency of response noise. Here is an [example](./image/sigma_comparison.png)
